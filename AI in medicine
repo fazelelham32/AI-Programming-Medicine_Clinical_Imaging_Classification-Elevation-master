@@ -1,4 +1,4 @@
-AI in medicine/ medical imaging classification (tensorflow tutorial)
+# AI in medicine/ medical imaging classification (tensorflow tutorial)
 
 From mammograms to cat scans, AI can diagnose a disease better than any human can if given the right training dataset. This will drastically reduce patient death, save medical practices a lot of money, and aid doctors in the patient care process. Everyone will win and its important to remember that AI won’t replace doctors. It will become the most powerful tool they’ve ever used. And once enough AI startups start impacting the field of healthcare, it will become as common a tool as the stethoscope has been.
 Which is a test that wrongly indicates the possibility of cancer in a 10-year period. Radiologists regularly disagree on their respective interpretations of medical images.  AI can do what no radiologist can, it can learn from hundreds of thousands of medical images and is estimated to be up on  ten percent more accurate than the average radiologist that accuracy gap will only increase as computing power gets cheaper and can be applied to any of the countless subfields of medicine not just radiology like what the startup vizhai is doing for brain scans.
@@ -16,7 +16,7 @@ thing to do is to first build a prototype that works as fast as possible and the
 others when comes to image classification which is our use case the fastest and easiest way to build a CNN is by using the chaos machine learning library it. 
 It lets us build NNs easily with its high-level APU  each line of code corresponds to a different layer in a NN.
 
-Biotechnology:
+# Biotechnology:
 A Chinese scientist claimed to have created the first genetically modified humans. 
 This triggered memories of that dystopian eugenics book Brave New World that I noted in high school no regrets he used a very popular gene editing tool called CRISPR to modify the embryos for a couple during fertility treatments to make them resistant to HIV infection which resulted in the birth of twin girls immediately afterward one of the inventors of CRISPR through some scientific shade at him by calling for a global moratorium on using it to create gene-edited babies. 
 This Fiasco has brought some really hard questions in biotechnology to the limelight that I’m going to address should we be engineering our own biology and that of our offspring what are the other potentials for this technology and what does it even meat to be human in 1919 the Hungarian agricultural engineer Carl Araki foresaw a time when biology could be used to turn raw materials into useful products he coined the term biotechnology to describe the merging of biology and technology we can consider agriculture to be a form of early biotech when farmers introduced
