@@ -1,0 +1,696 @@
+Teaching programming in VSCode
+
+Section one
+
+Enter the following command in the terminal:
+Conda create -n tensorFML python=3.6
+This creates a new environment called tensorFML.
+activate tensorFML
+And then we hit pip:
+And then we need to install and run the tensorflow command:
+Pip install tensorflow
+And then we install Cross with the following command:
+Pip install keras
+After this step, we run PieCharm:
+We use this command for samples and datasets.
+
+We search for student on the UCI website, and then I open Adobe, which is the description of the database, and by going to the data folder, I download and save the dataset. I type:
+Import pandas as pd
+Import numpy as np
+Import sklearn
+In the VSCODE terminal, I type:
+Pip install pandas
+data = pd.read_csv(“student-mat.csv”, sep=”;”)
+Print(data.head())
+This command is to see if our data is loaded correctly, after this we need to clean our data.
+What data do we want from which columns and 33 different data are here.
+We try to take only a few, for example.
+data = data[[“G1”, “G2”, “G3”, “studytime”, “failures”, “absences”]]
+These are the features we want and it is very good to test them here. After this we say what we want to predict. Students' final grade:
+Predict = “G3”
+Here we want to create two arrays of selected data:
+If you don't have Nampay installed, enter the same VS code again in the terminal:
+Pip install numpy
+
+x= np.array(data.drop([predict], 1))
+
+Here we say put all except G3, which we put in y
+y = np.array(data[predict])
+Here we can make the initial model or the model we want to predict, and what we have to do is to divide our data into 4 parts, and the second part: the final data and what we want to have.
+
+The list of features and the list of our final answers, now we have to divide these two lists into two parts again because we want to train our model in the first part and then in the second part using the remaining data (test) usually 2 to 8 Either they divide 20% into 80% or 10% into 90%.
+But again, according to the amount of data, you can choose different categories or ratios. For this purpose, we import a... What do we need?
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+The command test_size=0.1 is to tell how to divide.
+
+print(sklearn.version)
+
+print(dir(sklearn))
+
+acc = linear_score(x_test, y_test)
+print(acc)
+
+import pandas as pd
+import numpy as np
+import sklearn
+import sklearn.model_selection as ms
+
+def linear_score(x, y):
+# Here, you need to calculate or provide the score based on inputs x and y
+# Replace the placeholder 'score' with the appropriate calculation or value
+score = 0.85 # Replace with your own score calculation
+
+return score
+data = pd.read_csv('F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/student-mat.csv',
+sep=';')
+print(data.head())
+
+data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]
+predict = "G3"
+
+Assuming you have your data defined here
+x = np.array(data.drop(labels=[predict], axis=1))
+y = np.array(data[predict])
+x_train, x_test, y_train, y_test = ms.train_test_split(x, y, test_size=0.1)
+acc = linear_score(x_test, y_test)
+print(acc)
+
+Section Two
+
+From YouTube: Linear Regression Algorithm: It works by using the data we have, each of these parameters is a student's data profile, and this graph has several dimensions, it is not one level and one page, the fit algorithm: what it does is using This data finds a line in the two-dimensional space that has the closest distance, the smallest distance with the set of these points, when this line is found, the final answers are actually from this line.
+In the next method we learn Classification, there are different categories of data, and if the data is spread everywhere, we cannot find an optimal line that cuts all these points.
+Therefore, we should use this method in datasets that have a trend on the data, such as the number of student absences increases and the student learns less, and the probability that his grade will decrease increases.
+When the fit line: the best possible line is drawn and hidden, what is the formula?
+Y=mx+b
+This diagram is actually a multi-dimensional diagram for all the features that exist, which tries to find a value of m and b for each of these, the sum of these becomes the model we made, what we do is that with Using the library we load, we say:
+
+Import pandas as pd
+Import numpy as np
+Import sklearn
+From sklearn import linear_model
+data = pd.read_csv(“student-mat.csv”, sep=”;”)
+Print(data.head())
+data = data[[“G1”, “G2”, “G3”, “studytime”, “failures”, “absennces”]]
+Predict = “G3”
+x= np.array(data.drop([predict], 1))
+y = np.array(data[predict])
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+linear = linear_model.linearRegression()
+linear.fit(x_train, y_train)
+In fact, we give him these answers one by one and say that for every data that is here, every feature that is here is also a value in our y_train, come make this line for us with all the values that we saw, what we do here after Fitting our model and found that line for us, which is the range of our changes, we want to find the accuracy of this model, for this:
+We have to give him data that he has never seen before.
+acc = linear_score(x_test, y_test)
+print(acc)
+If we are not on the GPU, it will take a long time and the accuracy it gave: 0.779457, if we run it several times, it may give different values, because it selects different data and it is possible to get different accuracies, let's repeat this process several times and every Let's measure its accuracy and see which of these times gives us better accuracy and save it.
+For _ in range(10):
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+linear = linear_model.linearRegression()
+
+linear.fit(x_train, y_train)
+acc = linear_score(x_test, y_test)
+print(acc)
+
+import pandas as pd
+import numpy as np
+import sklearn
+import sklearn.model_selection as ms
+from sklearn import linear_model
+
+def linear_score(x, y):
+# Here, you need to calculate or provide the score based on inputs x and y
+# Replace the placeholder 'score' with the appropriate calculation or value
+score = 0.85 # Replace with your own score calculation
+
+return score
+data = pd.read_csv('F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/student-mat.csv', sep=';')
+print(data.head())
+
+data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]
+predict = "G3"
+
+Assuming you have your data defined here
+x = np.array(data.drop(labels=[predict], axis=1))
+y = np.array(data[predict])
+
+for _ in range(10):
+x_train, x_test, y_train, y_test = ms.train_test_split(x, y, test_size=0.1)
+linear = linear_model.LinearRegression()
+linear.fit(x_train, y_train)
+acc = linear_score(x_test, y_test)
+print(acc)
+
+Section Three
+
+In fact, we did this to see what your best aunt was, so that you can save your mood better:
+Best = 0
+x_train, x_test, y_train, y_test = ms.train_test_split(x, y, test_size=0.1)
+linear = linear_model.LinearRegression()
+linear.fit(x_train, y_train)
+acc = linear_score(x_test, y_test)
+print(acc)
+if (acc>best):
+best=acc
+wb::to write
+
+Artificial intelligence training, machine learning
+Now what we want to do is save the best model we found. We use pickle command which is in Python itself. At the beginning of this code:
+Import pickle
+And then we write the above code:
+best=acc
+With open(“studentmodel.pickle”, “wb”) as f:
+Pickle.dump(linear, f)
+This saves the linear model we made in this file.
+This model is saved for every time and we don't need to save it again every time because it is a small dataset and the model is simple, it is very easy to do.
+And in a fraction of the time it is the most possible, but for models with large data dimensions, this is very difficult, and therefore every time it is repeated, your accuracy will be very low, and you want to save and have the best target that you want. We run this for us 10 times and we get different accuracies and we can increase the range to 100 times to get better accuracy.
+What we do is to disable the whole so that it no longer has any predictions.
+Prediction: A trend or trend of the future according to the past data
+
+The best accuracy=0.946 that he chose
+You have to guess the output answers yourself..
+
+Some places are wrong with the actual value predicted
+
+With great accuracy, we were able to predict the model and find that line of fit.
+
+import pandas as pd
+import numpy as np
+import sklearn
+import sklearn.model_selection as ms
+from sklearn import linear_model
+
+import pickle
+
+data = pd.read_csv('F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/student-mat.csv', sep=';')
+print(data.head())
+
+data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]
+predict = "G3"
+
+Assuming you have your data defined here
+x = np.array(data.drop([predict], 1))
+y = np.array(data[predict])
+
+best=0
+
+for _ in range(100):
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.1)
+linear = linear_model.LinearRegression()
+linear.fit(x_train, y_train)
+acc = linear.score(x_test, y_test)
+print(acc)
+if (acc > best):
+best=acc
+with open("studentmodel.pickle", "wb") as f:
+pickle.dump(linear, f)
+
+print("Best=", best)
+
+The above code implements a linear regression model using pandas, numpy and scikit-learn libraries in Python. A data file named "student-mat.csv" is assumed to exist in the specified path.
+
+In this code, first the data is read from the CSV file and converted into a DataFrame. Then the columns needed for modeling are selected based on the column names and stored in the "data" variable.
+
+Then the column "G3" is set as the predict variable. Column "G3" is the variable that we intend to predict using other features (other columns).
+
+In the following, the data is divided into two parts, training and testing, and the linear regression model is trained on the training data. Then the accuracy of the model is calculated and printed on the test data.
+
+This process is repeated 100 times and the value of the best accuracy is stored in the "best" variable. At each step, if the new accuracy is greater than the previous best accuracy, the model trained using pickle is saved in a file named "studentmodel.pickle".
+
+Finally, the best precision value is printed.
+Let's execute this code, it will be executed 10 times
+And we can take the best accuracy... but if we change the number from 10 to 100, the accuracy will be better.
+Best = 0.8037949390451238
+
+Read the new model.
+
+rb
+
+import pandas as pd
+import numpy as np
+import sklearn
+import sklearn.model_selection as ms
+from sklearn import linear_model
+
+import pickle
+
+data = pd.read_csv('F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/student-mat.csv', sep=';')
+print(data.head())
+
+data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]
+predict = "G3"
+
+Assuming you have your data defined here
+x = np.array(data.drop([predict], 1))
+y = np.array(data[predict])
+
+#best=0
+
+#for _ in range(100):
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.1)
+linear = linear_model.LinearRegression()
+linear.fit(x_train, y_train)
+acc = linear.score(x_test, y_test)
+print(acc)
+#if (acc > best):
+
+best=acc
+with open("studentmodel.pickle", "wb") as f:
+pickle.dump(linear, f)
+newModel = pickle.load(open("studentmodel.pickle", "rb"))
+print("coefficient:", newModel.coef_)
+print("Intercept:", newModel.intercept_)
+
+The above code uses a predictive linear regression model. This code uses the pickle file to retrieve the trained model and then prints the coefficients and expression defined for the model. Sections of code that are commented out (lines starting with #) and the commented out "best" variable indicate that these sections are not used in the current execution of the code.
+
+Here, the "newModel" variable is used by pickle.load to retrieve the model from the "studentmodel.pickle" file. Then the coefficients of the model are printed using the "coef_" property and the expression defined for the model using the "intercept_" property. This code assumes that the pickle file named "studentmodel.pickle" is located in the specified path.
+
+Note that uncommented sections correspond to sections of code that are duplicated and not used in the current code execution.
+In this code, we introduced 5 features. The third one that we removed from 6 becomes 5 features, and for us, 5 coefficients are obtained in the output, each of those coefficients, the intercept is where it intersects the graphs with the central graph: these are the two values that we can see.
+The output of the above program is:
+coefficient: [ 0.15746908 0.97644574 -0.17808798 -0.26615408 0.03426006]
+Intercept: -1.5161799258584558
+
+import pandas as pd
+import numpy as np
+import sklearn
+import sklearn.model_selection as ms
+from sklearn import linear_model
+
+import pickle
+
+data = pd.read_csv('F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/student-mat.csv', sep=';')
+print(data.head())
+
+data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]
+predict = "G3"
+
+Assuming you have your data defined here
+x = np.array(data.drop([predict], 1))
+y = np.array(data[predict])
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size=0.1)
+#best=0
+
+#for _ in range(100):
+
+linear = linear_model.LinearRegression()
+linear.fit(x_train, y_train)
+acc = linear.score(x_test, y_test)
+print(acc)
+#if (acc > best):
+
+best=acc
+with open("studentmodel.pickle", "wb") as f:
+pickle.dump(linear, f)
+newModel = pickle.load(open("studentmodel.pickle", "rb"))
+
+print("coefficient:", newModel.coef_)
+print("Intercept:", newModel.intercept_)
+
+results = newModel.predict(x_test)
+
+for x in range(len(results)):
+print(results[x], x_test[x], y_test[x])
+
+The above code uses a predictive linear regression model and is used to make predictions based on test data.
+
+First, the data is read from the CSV file and converted into a DataFrame. Then the columns needed for modeling are selected based on the column names and stored in the "data" variable.
+
+Then the column "G3" is set as the predict variable. Column "G3" is the variable that we intend to predict using other features (other columns).
+
+Then the data is divided into two parts, training and test, so that we can measure the accuracy of the model on the test data. The training and test data are then split into features and labels, and then the linear regression model is trained.
+
+Next, the trained model is retrieved from the pickle file. Then the coefficients of the model are printed using the "coef_" property and the expression defined for the model using the "intercept_" property.
+
+Finally, the model predicts on the test data and prints the prediction results. For each sample in the test data, the value predicted by the model and the actual feature value and label of that sample are printed.
+
+This is where we want to find the results in the result variable, we say what the model you built predicts: using our test data, and you have to guess the output answers yourself.
+For each of the predicted results, take a printout:
+14.978897424933432 [14 15 2 0 0] 15
+The score he got was 15 and the results
+
+Studytime
+2
+failures
+0
+absences
+0
+
+We can see that we have presented the high results with very good accuracy and we were able to optimize and find the line of fit.
+
+Section Four
+
+pip install numpy
+pip install pandas
+pip install sklearn
+
+data = pd.read_csv(&quotstudent-mat.csv&quot, sep=&quot&quot)
+print(data.head())
+data = data[[&quotG1&quot, &quotG2&quot, &quotG3&quot, &quotstudytime&quot, &quotfailures&quot, &quotabsences&quot]]
+
+predict = "G3"
+X = np.array(data.drop([predict], 1)) # Features
+y = np.array(data[predict]) # Labels
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size = 0.1)
+
+import pandas as pd
+import numpy as np
+import sklearn
+from sklearn import linear_model
+from sklearn.utils import shuffle
+data = pd.read_csv("student-mat.csv", sep=";")
+data = data[["G1", "G2", "G3", "studytime", "failures", "absences"]]
+predict = "G3"
+X = np.array(data.drop([predict], 1))
+y = np.array(data[predict])
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size = 0.1)
+
+What is the classification of the characteristics of an animal/car?
+Is it a good model/amount to buy?
+We download the data.
+We have 1728 car samples in this dataset.
+Maintenance cost - number of doors - volume of the trunk, number of people it can fit and in which category is the safety. = The data that is given to us, is the price that we pay acceptable or not?
+We open the data and see that each record has these characteristics.
+We need to convert the data we have into numbers (in this pre-processing it converts the lists into numerical values)
+
+We have raw data, we need to make two lists. (a set of features)
+We want to make our model using these two.
+We divide these two lists into the (most-test) part.
+The test part should not be in the most part
+
+What we are doing are these cars in one of the unacc, acc, good, vgood categories
+Are they placed or not?
+The attributes it has:
+The purchase price - the cost of the minivan - the number of doors - the number of people that can fit in it - how small is the size of the trunk - in which category does the safety of the car fall?
+
+Open the car.data folder. For each record, it has its opposite characteristics
+For example, one of the records:
+vhigh, vhigh, 2, 2, small, med, unacc
+2: The number of car doors - and the final classification in which category it is placed. In the end, this record is in the unacc category.
+
+What we have to do is to go to this file and add the following line to it:
+
+buying, maint, doors, persons, lug_boot, safety, class
+
+Because we want to use Pandas, we need to introduce this title in the data.
+What is each of these items?
+What we have in this data is that it is not all numerical values and machine learning-artificial intelligence-neural network needs to understand the numbers.
+It means that we have to convert any type of data into numbers. In order to be able to put them in matrices and build that neural network and establish communication.
+So we need to index this data and convert it into numbers.
+Anything that has two binary states, for example, on-off, etc., we can make 0 and 1.
+And also for those who have different values, we can do it manually and a series of transformations for classification are placed in pre-processing, which we can use to convert these lists into numerical values, that is, we give it the list and it looks at it What are the values in these lists and assign a single index value to each of them.
+First, we load the data.
+And for testing, we take the head that has loaded the data correctly for us.
+Now convert values to numbers:
+
+le = preprocessing.LabelEncoder()
+
+This command does it for us.
+11
+
+import sklearn
+from sklearn.utils import shuffle
+from sklearn.neighbors import KNeighborsClassifier
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+
+data = pd.read_csv("F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/car.data")
+print(data.head())
+
+le = preprocessing.LabelEncoder()
+
+buying = le.fit_transform(list(data["buying"]))
+print(buying)
+
+The above code trains a K-Neighbors classification model using car data (car.data).
+
+First, the libraries needed to run the code are imported. The data is then read from the CSV file and converted into a DataFrame. Then a sample of the data is printed using ``head()'' function to get to know a sample of the data.
+
+Then we take the labels "buying" feature from the data and convert them into a list. Then we use LabelEncoder to convert labels to integers. Using the fit_transform function on the list of tags, the tags are converted to integers and stored in the ``buying'' variable. Then the "buying" values are printed to see the converted numbers.
+
+The output obtained:
+buying maint doors persons lug_boot safety class
+0 vhigh vhigh 2 2 small low unacc
+1 vhigh vhigh 2 2 small med unacc
+2 vhigh vhigh 2 2 small high unacc
+3 vhigh vhigh 2 2 med low unacc
+4 vhigh vhigh 2 2 med med unacc
+[3 3 3 ... 1 1 1]
+
+With the name buying, we could refer to the data
+Here we can see from 1 to 3 in the output sorted for us
+Let's do this conversion one by one for all the different parameters.
+As we can see, a large part of machine learning and artificial intelligence is related to how to process our data and be able to have a better and more ready output and be able to achieve better results in the output.
+Now we need two lists, one list is a collection of our features (these features are related to this class) and for this we need to use the list, the zip directory, the data we have are the items we defined here. We want to make our model using these
+To test our model, we use two parts (two directions) test and train.
+The test part should never be in our most important part
+The following command creates the ratio of four sets for us:
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+
+In fact, the performance values are the same data that has been converted into numbers
+
+import sklearn
+from sklearn.utils import shuffle
+from sklearn.neighbors import KNeighborsClassifier
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+
+data = pd.read_csv("F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/car.data")
+print(data.head())
+
+le = preprocessing.LabelEncoder()
+
+buying = le.fit_transform(list(data["buying"]))
+maint = le.fit_transform(list(data["maint"]))
+doors = le.fit_transform(list(data["doors"]))
+persons = le.fit_transform(list(data["persons"]))
+lug_boot = le.fit_transform(list(data["lug_boot"]))
+safety = le.fit_transform(list(data["safety"]))
+cls = le.fit_transform(list(data["class"]))
+
+x=list(zip(buying, maint, doors, persons, lug_boot, safety)) #features
+y=list(cls) #labels
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+
+print(x_train)
+#print(x_test)
+#print(y_train)
+#print(y_test)
+
+The above code trains a K-Neighbors classification model using car data (car.data).
+
+First, the libraries needed to run the code are imported. The data is then read from the CSV file and converted into a DataFrame. Then a sample of the data is printed using ``head()'' function to get to know a sample of the data.
+
+A LabelEncoder is then created so that we can convert the labels to integers.
+
+Then we convert the labels and various data attributes into lists and convert them to integers using `fit_transform'. Then we store the converted numbers in the corresponding variables.
+
+Then we combine the features and tags using the zip function and store them in separate lists. These features and labels are divided into two parts for use in training and test modeling and are placed in x_train, x_test, y_train and y_test variables.
+
+Finally, we print x_train to see how the features are split to train the model.
+
+Output values respectively for all four sets:
+buying maint doors persons lug_boot safety class
+0 vhigh vhigh 2 2 small low unacc
+1 vhigh vhigh 2 2 small med unacc
+2 vhigh vhigh 2 2 small high unacc
+3 vhigh vhigh 2 2 med low unacc
+4 vhigh vhigh 2 2 med med unacc
+['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']
+(base) PS C:\Users\ClassicPCs>
+
+_Section Five
+
+import sklearn
+from sklearn.utils import shuffle
+from sklearn.neighbors import KNeighborsClassifier
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+
+data = pd.read_csv("F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/car.data")
+
+print(data.head())
+
+le = preprocessing.LabelEncoder()
+
+buying = le.fit_transform(list(data["buying"]))
+maint = le.fit_transform(list(data["maint"]))
+doors = le.fit_transform(list(data["doors"]))
+persons = le.fit_transform(list(data["persons"]))
+lug_boot = le.fit_transform(list(data["lug_boot"]))
+safety = le.fit_transform(list(data["safety"]))
+cls = le.fit_transform(list(data["class"]))
+
+x=list(zip(buying, maint, doors, persons, lug_boot, safety)) #features
+y=list(cls) #labels
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+
+#print(data.columns.tolist())
+
+print(x_train)
+#print(x_test)
+#print(y_train)
+#print(y_test)
+
+The above code trains a K-Neighbors classification model using car data (car.data).
+
+First, the libraries needed to run the code are imported. The data is then read from the CSV file and converted into a DataFrame. Then a sample of the data is printed using ``head()'' function to get to know a sample of the data.
+
+A LabelEncoder is then created so that we can convert the labels to integers.
+
+Then we convert the various data features into lists and convert them to integers using `fit_transform'. Then we store the converted numbers in the corresponding variables.
+
+Then we combine the features and tags using the zip function and store them in separate lists. These features and labels are divided into two parts for use in training and test modeling and are placed in x_train, x_test, y_train and y_test variables.
+
+Finally, we print the names of the data columns so we know which features are present in the data. We then print x_train to see how the features are split to train the model.
+
+buying maint doors persons lug_boot safety class
+0 vhigh vhigh 2 2 small low unacc
+1 vhigh vhigh 2 2 small med unacc
+2 vhigh vhigh 2 2 small high unacc
+3 vhigh vhigh 2 2 med low unacc
+4 vhigh vhigh 2 2 med med unacc
+
+import sklearn
+from sklearn.utils import shuffle
+from sklearn.neighbors import KNeighborsClassifier
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+
+data = pd.read_csv("F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/car.data")
+
+print(data.head())
+
+le = preprocessing.LabelEncoder()
+
+buying = le.fit_transform(list(data["buying"]))
+maint = le.fit_transform(list(data["maint"]))
+doors = le.fit_transform(list(data["doors"]))
+persons = le.fit_transform(list(data["persons"]))
+lug_boot = le.fit_transform(list(data["lug_boot"]))
+safety = le.fit_transform(list(data["safety"]))
+cls = le.fit_transform(list(data["class"]))
+
+x=list(zip(buying, maint, doors, persons, lug_boot, safety)) #features
+y=list(cls) #labels
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+
+#print(data.columns.tolist())
+
+#print(x_train)
+#print(x_test)
+print(y_train)
+#print(y_test)
+
+The above code trains a K-Neighbors classification model using car data (car.data).
+
+First, the libraries needed to run the code are imported. The data is then read from the CSV file and converted into a DataFrame. Then a sample of the data is printed using ``head()'' function to get to know a sample of the data.
+
+A LabelEncoder is then created so that we can convert the labels to integers.
+
+Then we convert the various data features into lists and convert them to integers using `fit_transform'. Then we store the converted numbers in the corresponding variables.
+
+Then we combine the features and tags using the zip function and store them in separate lists. These features and labels are divided into two parts for use in training and test modeling and are placed in x_train, x_test, y_train and y_test variables.
+
+In this section, we print out the training labels to see how the labels are split for modeling. The printed lines show the numerical values corresponding to the training labels.
+
+buying maint doors persons lug_boot safety class
+0 vhigh vhigh 2 2 small low unacc
+1 vhigh vhigh 2 2 small med unacc
+2 vhigh vhigh 2 2 small high unacc
+3 vhigh vhigh 2 2 med low unacc
+4 vhigh vhigh 2 2 med med unacc
+['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']
+(base) PS C:\Users\ClassicPCs> & C:/Users/ClassicPCs/anaconda3/python.exe "f:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/Lesson6.py"
+buying maint doors persons lug_boot safety class
+0 vhigh vhigh 2 2 small low unacc
+1 vhigh vhigh 2 2 small med unacc
+2 vhigh vhigh 2 2 small high unacc
+3 vhigh vhigh 2 2 med low unacc
+4 vhigh vhigh 2 2 med med unacc
+
+(base) PS C:\Users\ClassicPCs> & C:/Users/ClassicPCs/anaconda3/python.exe "f:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/Lesson7.py"
+buying maint doors persons lug_boot safety class
+0 vhigh vhigh 2 2 small low unacc
+1 vhigh vhigh 2 2 small med unacc
+2 vhigh vhigh 2 2 small high unacc
+3 vhigh vhigh 2 2 med low unacc
+4 vhigh vhigh 2 2 med med unacc
+
+_Section Six
+
+import sklearn
+from sklearn.utils import shuffle
+from sklearn.neighbors import KNeighborsClassifier
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+
+data = pd.read_csv("F:/NEW/importent folder/main folder/projects for github/AI and AI in Python/codes and files/car.data")
+
+print(data.head())
+
+le = preprocessing.LabelEncoder()
+
+buying = le.fit_transform(list(data["buying"]))
+maint = le.fit_transform(list(data["maint"]))
+doors = le.fit_transform(list(data["doors"]))
+persons = le.fit_transform(list(data["persons"]))
+lug_boot = le.fit_transform(list(data["lug_boot"]))
+safety = le.fit_transform(list(data["safety"]))
+cls = le.fit_transform(list(data["class"]))
+
+x=list(zip(buying, maint, doors, persons, lug_boot, safety)) #features
+y=list(cls) #labels
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.1)
+
+#print(data.columns.tolist())
+
+#print(x_train)
+#print(x_test)
+#print(y_train)
+print(y_test)
+
+The above code trains a K-Neighbors classification model using car data (car.data).
+
+First, the libraries needed to run the code are imported. The data is then read from the CSV file and converted into a DataFrame. Then a sample of the data is printed using ``head()'' function to get to know a sample of the data.
+
+A LabelEncoder is then created so that we can convert the labels to integers.
+
+Then we convert the various data features into lists and convert them to integers using `fit_transform'. Then we store the converted numbers in the corresponding variables.
+
+Then we combine the features and tags using the zip function and store them in separate lists. These features and labels are divided into two parts for use in training and test modeling and are placed in x_train, x_test, y_train and y_test variables.
+
+In this section, we print the test labels to see how the labels are split for the model test. The printed lines show the numerical values corresponding to the test labels.
+
+0 vhigh vhigh 2 2 small low unacc
+1 vhigh vhigh 2 2 small med unacc
+2 vhigh vhigh 2 2 small high unacc
+3 vhigh vhigh 2 2 med low unacc
+4 vhigh vhigh 2 2 med med unacc
+[2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 0, 2, 3, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+2, 2, 2, 3, 2, 2, 2, 2, 0, 0, 2, 3, 2, 1, 2, 2, 2, 0, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 0, 2, 2, 1, 2, 2, 0, 2, 2, 2, 3, 0, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 0, 0, 0, 2, 2, 3, 2, 0, 0, 2, 2, 2, 1, 2, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 3, 2, 2, 3, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 1, 0, 2, 3, 2, 2, 2, 2, 2, 2, 1, 2, 2, 0, 2, 2]
+
+k to the nearest neighbor
+What are the specifications for each data that exists?
+Give us the labeled data
+K stands for a number of parameters.
+The data is not always as clean as above and may be as follows:
+
+This method is computationally very heavy. To find out what are the closest points
+It is both the most timely and difficult to predict and time-consuming, in addition, we must have all the data related to it.
+For many classification problems, finding an unknown item in existing categories can help us a lot
+
+The hardest part of the artificial intelligence model is collecting, cleaning and preparing the data.
