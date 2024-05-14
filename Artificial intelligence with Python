@@ -61,3 +61,4 @@ The simple game of tic-tac-toe
 Where the goal is to be the first to successfully create three in a row and we have our AI which we’ll call an agent our goal is to have this AI learn how to become really good at playing tic-tac-toe against humans rather than just hard coding in a bunch of if-then statements how can we formalize this problem?
 
 
+I can make arcs consistent. With the view that the ones I am correcting, with the assignments that have been done so far, values have never been assigned, so leave them aside.
